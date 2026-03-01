@@ -7,7 +7,7 @@ const PayOS = require("@payos/node");
 dotenv.config({ path: path.resolve(__dirname, ".env.local") });
 
 const app = express();
-const clientUrl = process.env.CLIENT_URL || "http://localhost:3000";
+const BASE_URL = process.env.BASE_URL || "http://localhost:3030";
 const PRICE_PER_ENVELOPE = 10000;
 const requiredEnv = ["PAYOS_CLIENT_ID", "PAYOS_API_KEY", "PAYOS_CHECKSUM_KEY"];
 
@@ -23,9 +23,12 @@ const payOS = new PayOS(
   process.env.PAYOS_CHECKSUM_KEY
 );
 
-app.use(cors({ origin: clientUrl }));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Serve Vite build
+app.use(express.static(path.join(__dirname, "dist")));
 
 function parsePositiveInteger(value) {
   if (typeof value === "number" && Number.isInteger(value) && value > 0) {
@@ -70,8 +73,8 @@ app.post("/create-payment-link", async (req, res) => {
         price: PRICE_PER_ENVELOPE,
       },
     ],
-    returnUrl: `${clientUrl}?success=true&amount=${amount}&quantity=${quantity}`,
-    cancelUrl: `${clientUrl}?canceled=true`,
+    returnUrl: `${BASE_URL}?success=true&amount=${amount}&quantity=${quantity}`,
+    cancelUrl: `${BASE_URL}?canceled=true`,
   };
 
   try {
@@ -91,6 +94,11 @@ app.post("/create-payment-link", async (req, res) => {
         : "Could not create payment link.",
     });
   }
+});
+
+// Serve index.html for client-side routing
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 const port = Number(process.env.PORT) || 3030;
