@@ -12,6 +12,10 @@ Create `.env.local` in project root:
 PAYOS_CLIENT_ID=your_client_id
 PAYOS_API_KEY=your_api_key
 PAYOS_CHECKSUM_KEY=your_checksum_key
+
+# Base URL for the application 	3030 (or leave blank in render.com, Express will use env PORT)
+BASE_URL=http://localhost:3030
+API_BASE_URL=your-hosted-url.onrender.com
 ```
 
 Optional (I have):
@@ -90,3 +94,11 @@ Responses:
 npm run build
 node --check server.js
 ```
+
+HOST ON RENDER: DEFAULT WEB SERVICE
+
+add this
+PAYOS_CLIENT_ID → [your value]
+PAYOS_API_KEY → [your value]
+PAYOS_CHECKSUM_KEY → [your value]
+API_BASE_URL=your-hosted-url.onrender.com
