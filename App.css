@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #C0392B;
+  --red-deep: #96281B;
+  --red-bright: #E74C3C;
+  --gold: #F1C40F;
+  --gold-deep: #D4A017;
+  --gold-light: #FFF0AA;
+  --cream: #FFF8F0;
+  --dark: #1A0A00;
+}
+
+body {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  background: var(--red-deep);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Petals ── */
+.petals-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  font-size: 1.4rem;
+  opacity: 0.25;
+  animation: fall linear infinite;
+  top: -60px;
+}
+
+@keyframes fall {
+  0%   { transform: translateY(-60px) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.25; }
+  90%  { opacity: 0.15; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+.petal-1  { left: 5%;  animation-duration: 8s;  animation-delay: 0s; }
+.petal-2  { left: 15%; animation-duration: 11s; animation-delay: 1.5s; }
+.petal-3  { left: 25%; animation-duration: 9s;  animation-delay: 3s; }
+.petal-4  { left: 35%; animation-duration: 13s; animation-delay: 0.5s; }
+.petal-5  { left: 45%; animation-duration: 7s;  animation-delay: 2s; }
+.petal-6  { left: 55%; animation-duration: 10s; animation-delay: 4s; }
+.petal-7  { left: 65%; animation-duration: 12s; animation-delay: 1s; }
+.petal-8  { left: 75%; animation-duration: 8.5s; animation-delay: 2.5s; }
+.petal-9  { left: 82%; animation-duration: 9.5s; animation-delay: 0.8s; }
+.petal-10 { left: 90%; animation-duration: 11s; animation-delay: 3.5s; }
+.petal-11 { left: 10%; animation-duration: 14s; animation-delay: 5s; }
+.petal-12 { left: 60%; animation-duration: 6.5s; animation-delay: 6s; }
+
+/* ── Layout ── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  position: relative;
+  background:
+    radial-gradient(ellipse at top, #8B0000 0%, var(--red-deep) 60%),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.015) 40px,
+      rgba(255,255,255,0.015) 41px
+    );
+}
+
+/* ── Card ── */
+.card {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(160deg, #fff8f0 0%, #fff0e0 100%);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 380px;
+  box-shadow:
+    0 0 0 3px var(--gold),
+    0 0 0 6px var(--red),
+    0 30px 80px rgba(0,0,0,0.5);
+  text-align: center;
+  animation: cardIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes cardIn {
+  from { transform: scale(0.85) translateY(30px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.card-top-decoration {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  color: var(--gold-deep);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Title ── */
+.title-block { margin-bottom: 1.5rem; }
+
+.year-badge {
+  display: inline-block;
+  background: var(--red);
+  color: var(--gold-light);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--red-deep);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: #8B5A3C;
+  font-size: 0.78rem;
+  margin-top: 0.4rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── Envelope ── */
+.envelope-display {
+  position: relative;
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+.lixiImage {
+  width: 120px;
+  height: auto;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 8px 20px rgba(192, 57, 43, 0.4));
+}
+
+.envelope-emoji {
+  font-size: 5rem;
+  display: block;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 8px 20px rgba(192, 57, 43, 0.4));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%       { transform: translateY(-10px) rotate(3deg); }
+}
+
+.envelope-glow {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 12px;
+  background: rgba(192, 57, 43, 0.3);
+  border-radius: 50%;
+  filter: blur(8px);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scaleX(1); }
+  50%       { opacity: 1;   transform: translateX(-50%) scaleX(0.7); }
+}
+
+/* ── Product Info ── */
+.product-info { margin: 0.5rem 0 1.5rem; }
+
+.product-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.product-price {
+  font-size: 0.8rem;
+  color: #8B5A3C;
+  margin-top: 2px;
+}
+
+/* ── Quantity ── */
+.quantity-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  background: rgba(192,57,43,0.07);
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+.qty-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2.5px solid var(--red);
+  background: white;
+  color: var(--red);
+  font-size: 1.5rem;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.qty-btn:hover:not(:disabled) {
+  background: var(--red);
+  color: white;
+  transform: scale(1.1);
+}
+
+.qty-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.qty-display { text-align: center; min-width: 80px; }
+
+.qty-number {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--red-deep);
+  line-height: 1;
+}
+
+.qty-label {
+  display: block;
+  font-size: 0.7rem;
+  color: #8B5A3C;
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+}
+
+/* ── Total ── */
+.total-section {
+  background: linear-gradient(135deg, var(--red-deep), var(--red));
+  border-radius: 14px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.total-label {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.total-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+/* ── Pay Button ── */
+.pay-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold));
+  color: var(--dark);
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 20px rgba(212,160,23,0.4);
+  letter-spacing: 0.02em;
+}
+
+.pay-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(212,160,23,0.5);
+}
+
+.pay-btn:active:not(:disabled) { transform: translateY(0); }
+.pay-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* Loading dots */
+.loading-dots { display: flex; gap: 6px; align-items: center; }
+.loading-dots span {
+  animation: dotBounce 1s ease-in-out infinite;
+  font-size: 0.5rem;
+}
+.loading-dots span:nth-child(2) { animation-delay: 0.15s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes dotBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+.footer-note {
+  margin-top: 1rem;
+  font-size: 0.68rem;
+  color: #B07050;
+  letter-spacing: 0.03em;
+}
+
+/* ── Success / Cancel ── */
+.success-card { max-width: 360px; }
+
+.success-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.success-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--red-deep);
+  margin-bottom: 0.75rem;
+}
+
+.success-msg {
+  color: #5A3020;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.success-wish {
+  background: linear-gradient(135deg, #FFF0AA, #FFD700);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  color: var(--red-deep);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
